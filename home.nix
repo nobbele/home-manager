@@ -32,9 +32,6 @@
 
   };
 
-  nixGL.packages = import <nixgl> { inherit pkgs; };
-  nixGL.defaultWrapper = "nvidia";
-
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [
