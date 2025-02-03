@@ -9,17 +9,13 @@ in
     ./terminal
     ./creative
     ./games
+    ./xdg.nix
   ];
 
   config = {
-    terminal = {
-      emulator = "ghostty";
-      prompt = "starship";
-    };
-
-    creative = {
-      daw = "lmms";
-    };
+    home.packages = with pkgs; [
+      (nixGL.wrap qimgv)
+    ];
 
     programs.obs-studio = {
       enable = true;
