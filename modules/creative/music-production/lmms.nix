@@ -10,8 +10,8 @@ let
 in
 {
   config = lib.mkIf (creativeCfg.daw == "lmms") {
-    home.packages = with pkgs; [
-      (config.lib.nixGL.wrap lmms)
+    home.glPackages = with pkgs; [
+      lmms
     ];
   };
 }

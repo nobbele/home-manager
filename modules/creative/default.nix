@@ -1,20 +1,17 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
-let
-  inherit (config.lib) nixGL;
-in
 {
   imports = [
     ./music-production
   ];
 
   config = {
-    home.packages = with pkgs; [
-      (nixGL.wrap blender)
-      (nixGL.wrap gimp)
-      (nixGL.wrap krita)
-      (nixGL.wrap libresprite)
-      (nixGL.wrap kdePackages.kdenlive)
+    home.glPackages = with pkgs; [
+      blender
+      gimp
+      krita
+      libresprite
+      kdePackages.kdenlive
     ];
   };
 }

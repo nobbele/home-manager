@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   inherit (config.lib) nixGL;
@@ -12,10 +17,18 @@ in
     ./xdg.nix
   ];
 
+  options.home.glPackages = lib.mkOption {
+    type = lib.types.listOf lib.types.package;
+    default = [ ];
+    description = "The set of packages to appear in the user environment with nixGL wrapper.";
+  };
+
   config = {
-    home.packages = with pkgs; [
-      (nixGL.wrap qimgv)
+    home.glPackages = with pkgs; [
+      qimgv
     ];
+
+    home.packages = map config.lib.nixGL.wrap config.home.glPackages;
 
     programs.obs-studio = {
       enable = true;
